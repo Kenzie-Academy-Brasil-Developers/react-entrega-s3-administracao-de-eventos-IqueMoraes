@@ -1,4 +1,5 @@
 import { Switch, Route } from "react-router-dom"
+import CreateNewEvent from "../Pages/CreateNewEvent";
 import { Evento1 } from "../Pages/EventPages";
 
 const Routes = () => {
@@ -8,8 +9,8 @@ const Routes = () => {
             <Route exact path="/">
                 Dashboard
             </Route>
-            <Route path="/newevent">
-                área de criar eventos
+            <Route path="/createnewevent">
+               <CreateNewEvent/>
             </Route>
             <Route parth="/evento1">
                 <Evento1/>
