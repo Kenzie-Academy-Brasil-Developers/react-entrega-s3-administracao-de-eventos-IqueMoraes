@@ -1,16 +1,25 @@
-import { useContext } from "react";
+import { useEffect } from "react";
 import BeerCard from "../../components/BeerCard";
-import { WeddingListContext } from "../../Providers/WeddingList";
-
+import { useWedding } from "../../Providers/WeddingList";
 
 export default function WeddingPage() {
-    const {weddingList, removeBeer }= useContext(WeddingListContext);
+  const { weddingList, removeBeer } = useWedding();
 
-    console.log(weddingList);
+  
 
-    return (
-<div>
-    {weddingList.map((item, index)=> <BeerCard key={item.id} index={index} removeButton={removeBeer} />)}
-</div>
-    )
+  return (
+    <div>
+      <h2>Página do evento casamento.</h2>
+      <h4> segue a lista das cervejas.</h4>
+    {weddingList.map(item=> <p>{item.name}</p>)} 
+      {/* {weddingList.map((item, index) => (
+        <BeerCard
+          key={item.id}
+          index={index}
+          type={"eventList"}
+          removeButton={removeBeer}
+        />
+      ))} */}
+    </div>
+  );
 }

@@ -1,19 +1,11 @@
 import axios from "axios";
-import { useEffect, useState, useContext } from "react";
-import { WeddingListContext } from "../../Providers/WeddingList";
-import { GraduationListContext } from "../../Providers/GraduationList";
-import { CelebrationListContext } from "../../Providers/CelebrationList";
+import { useEffect, useState} from "react";
 import BeerCard from "../../components/BeerCard";
 
 export default function CreateNewEvent() {
   const [drinksList, setDrinksList] = useState([]);
-  const { weddingList, addWeddingBeer } = useContext(WeddingListContext);
-  const { graduationList, setGraduationList } = useContext(
-    GraduationListContext
-  );
-  const { celebrationList, setCelebrationList } = useContext(
-    CelebrationListContext
-  );
+
+ 
 
   const getDrinks = () => {
     axios
@@ -37,12 +29,7 @@ export default function CreateNewEvent() {
             key={item.id}
             item={item}
             index={index + 1}
-            list1={weddingList}
-            addButton1={addWeddingBeer}
-            list2={graduationList}
-            addButton2={setGraduationList}
-            list3={celebrationList}
-            addButton3={setCelebrationList}
+            type={"shoppingList"}
           />
         ))}
       </div>

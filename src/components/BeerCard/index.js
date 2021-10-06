@@ -1,23 +1,22 @@
 import { Container, ImageBox } from "./styles";
-
+import { useWedding } from "../../Providers/WeddingList";
+import { useGraduation} from '../../Providers/GraduationList';
 
 export default function BeerCard({
   item,
   index,
-  list1,
-  addButton1 = false,
-  list2,
-  addButton2 = false,
-  list3,
-  addButton3 = false,
-  removeButton = false,
+  type,
+  
 }) {
+
+  const { addWeddingBeer } = useWedding();
+  const { addGraduationBeer } = useGraduation();
   
 
   const handleClick = (respectiveFunction, item) => {
     respectiveFunction( item);
   };
-
+  
   return (
     <Container>
       <div>
@@ -31,28 +30,28 @@ export default function BeerCard({
       <div>{/* <button onClick={()=> }>Mostrar detalhes</button> */}</div>
 
       <div>
-        {addButton1 && (
-          <button onClick={() => handleClick(addButton1)}>
+        {type === "shoppingList" && (
+          <button onClick={() => handleClick(addWeddingBeer, item)}>
             Adicionar ao Casamento
           </button>
         )}
-        {addButton1 && (
+        {type === "shoppingList" && (
           <button
-            onClick={() => handleClick(addButton2)}
+            onClick={() => handleClick(addGraduationBeer, item)}
           >
             Adicionar à Formatura
           </button>
         )}
-        {addButton1 && (
+        {/* {type === "shoppingList" && (
           <button
             onClick={() => handleClick(addButton3)}
           >
             Adicionar à Confraternização
           </button>
         )}
-        {removeButton && (
-          <button onClick={() => handleClick(removeButton)}>Remover da lista</button>
-        )}
+        {type === "eventList" && (
+          <button onClick={() => handleClick(removeButton, item)}>Remover da lista</button>
+        )} */}
       </div>
     </Container>
   );
