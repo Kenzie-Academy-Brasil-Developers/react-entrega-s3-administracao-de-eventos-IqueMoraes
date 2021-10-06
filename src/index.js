@@ -3,16 +3,16 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { EventListProvider } from "./Providers/EventList";
+import Providers from "./Providers/Providers.js";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <EventListProvider>
+    <Providers>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </EventListProvider>
+    </Providers>
   </React.StrictMode>,
   document.getElementById("root")
 );

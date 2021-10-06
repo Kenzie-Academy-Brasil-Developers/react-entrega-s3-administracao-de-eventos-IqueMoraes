@@ -1,6 +1,6 @@
 import { Switch, Route } from "react-router-dom"
 import CreateNewEvent from "../Pages/CreateNewEvent";
-import { Evento1 } from "../Pages/EventPages";
+import WeddingPage from "../Pages/EventPages/weddingPage";
 
 const Routes = () => {
 
@@ -12,8 +12,8 @@ const Routes = () => {
             <Route path="/createnewevent">
                <CreateNewEvent/>
             </Route>
-            <Route parth="/evento1">
-                <Evento1/>
+            <Route parth="/wedding">
+                <WeddingPage/>
             </Route>
             <Route parth="/evento1">
                 Evento 1
