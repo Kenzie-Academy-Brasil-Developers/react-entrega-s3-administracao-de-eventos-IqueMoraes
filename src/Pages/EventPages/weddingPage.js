@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import BeerCard from "../../components/BeerCard";
 import { useWedding } from "../../Providers/WeddingList";
 
@@ -11,15 +11,17 @@ export default function WeddingPage() {
     <div>
       <h2>Página do evento casamento.</h2>
       <h4> segue a lista das cervejas.</h4>
-    {weddingList.map(item=> <p>{item.name}</p>)} 
-      {/* {weddingList.map((item, index) => (
+      {weddingList.map((item, index) => (
         <BeerCard
           key={item.id}
+          item={item}
           index={index}
           type={"eventList"}
           removeButton={removeBeer}
         />
-      ))} */}
+      ))}
+
+      <Link to="/createnewevent"> voltar para lista</Link>
     </div>
   );
 }

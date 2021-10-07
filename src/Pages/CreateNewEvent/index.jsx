@@ -1,30 +1,20 @@
-import axios from "axios";
-import { useEffect, useState} from "react";
+import { Link } from "react-router-dom";
 import BeerCard from "../../components/BeerCard";
+import { useProducts } from "../../Providers/ProductsLIst";
 
 export default function CreateNewEvent() {
-  const [drinksList, setDrinksList] = useState([]);
+  
 
- 
+const { products } = useProducts();
 
-  const getDrinks = () => {
-    axios
-      .get("https://api.punkapi.com/v2/beers")
-      .then((response) => setDrinksList(response.data))
-      .catch((err) => console.log(err));
-  };
 
-  useEffect(() => {
-    getDrinks();
-    console.log(drinksList)
-  }, []);
-
+  
 
   return (
     <div>
       Está é a páginda de criar eventos
       <div>
-        {drinksList.map((item, index) => (
+        {products.map((item, index) => (
           <BeerCard
             key={item.id}
             item={item}
@@ -32,6 +22,7 @@ export default function CreateNewEvent() {
             type={"shoppingList"}
           />
         ))}
+        <Link to ="/weddingpage">Vai para a página de wedding</Link>
       </div>
     </div>
   );

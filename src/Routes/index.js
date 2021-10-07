@@ -1,12 +1,15 @@
 import { Switch, Route } from "react-router-dom";
 import CreateNewEvent from "../Pages/CreateNewEvent";
+import Dashboard from "../Pages/Dashboard";
+import GraduationPage from "../Pages/EventPages/graduationPage";
 import WeddingPage from "../Pages/EventPages/weddingPage";
 
 const Routes = () => {
   return (
     <Switch>
       <Route exact path="/">
-        Dashboard
+        <Dashboard />
+
       </Route>
       <Route path="/createnewevent">
         <CreateNewEvent />
@@ -14,7 +17,9 @@ const Routes = () => {
       <Route path="/weddingpage">
         <WeddingPage />
       </Route>
-      <Route path="/evento1">Evento 1</Route>
+      <Route path="/graduationpage">
+        <GraduationPage />
+      </Route>
     </Switch>
   );
 };

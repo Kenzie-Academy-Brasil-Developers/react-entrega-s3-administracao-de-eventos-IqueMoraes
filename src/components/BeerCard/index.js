@@ -1,22 +1,17 @@
 import { Container, ImageBox } from "./styles";
 import { useWedding } from "../../Providers/WeddingList";
-import { useGraduation} from '../../Providers/GraduationList';
+import { useGraduation } from "../../Providers/GraduationList";
+import { useCelebration } from '../../Providers/CelebrationList';
 
-export default function BeerCard({
-  item,
-  index,
-  type,
-  
-}) {
-
+export default function BeerCard({ item, index, type, removeButton }) {
   const { addWeddingBeer } = useWedding();
   const { addGraduationBeer } = useGraduation();
-  
+  const { addCelebrationBeer } = useCelebration();
 
   const handleClick = (respectiveFunction, item) => {
-    respectiveFunction( item);
+    respectiveFunction(item);
   };
-  
+
   return (
     <Container>
       <div>
@@ -29,30 +24,25 @@ export default function BeerCard({
 
       <div>{/* <button onClick={()=> }>Mostrar detalhes</button> */}</div>
 
-      <div>
-        {type === "shoppingList" && (
+      {type === "shoppingList" ? (
+        <div>
           <button onClick={() => handleClick(addWeddingBeer, item)}>
-            Adicionar ao Casamento
+            Adicionar ao Casamento{" "}
           </button>
-        )}
-        {type === "shoppingList" && (
-          <button
-            onClick={() => handleClick(addGraduationBeer, item)}
-          >
+
+          <button onClick={() => handleClick(addGraduationBeer, item)}>
             Adicionar à Formatura
           </button>
-        )}
-        {/* {type === "shoppingList" && (
-          <button
-            onClick={() => handleClick(addButton3)}
-          >
+
+          <button onClick={() => handleClick(addCelebrationBeer, item)}>
             Adicionar à Confraternização
           </button>
-        )}
-        {type === "eventList" && (
-          <button onClick={() => handleClick(removeButton, item)}>Remover da lista</button>
-        )} */}
-      </div>
+        </div>
+      ) : (
+        <button onClick={() => handleClick(removeButton, item)}>
+          Remover da lista
+        </button>
+      )}
     </Container>
   );
 }
