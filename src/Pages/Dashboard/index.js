@@ -1,20 +1,19 @@
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 import AsideMenu from "../../components/Aside";
-import { Body,Aside, TitleDiv, Main, EventButton } from "./styles";
+import { Main, EventButton } from "./styles";
+import {Body, TitleDiv } from "../../components/globalStylesComponents/styles"
 
 
 export default function Dashboard(){
+    
+    const history = useHistory();
 
     return(
         <Body>
-                <TitleDiv>
-                    <h2>Administração de eventos</h2>
+                <TitleDiv backgroundColor={"#b59300"}>
+                    <h2>ADMINISTRAÇÃO DE EVENTOS</h2>
                 </TitleDiv>
-            <AsideMenu>
-
-            
-
-            </AsideMenu>
+            <AsideMenu/>
             <section>
                 <Main>
                     <div>
@@ -32,7 +31,7 @@ export default function Dashboard(){
                         </EventButton>
                     </div>
 
-                    <button ><span>Lista de produtos</span></button>
+                    <button onClick={()=> history.push("/cervejas")}><span>Lista de produtos</span></button>
                 </Main>
             </section>
             

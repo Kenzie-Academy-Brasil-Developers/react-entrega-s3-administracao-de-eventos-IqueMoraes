@@ -1,28 +1,51 @@
 import styled from "styled-components";
 
 export const Aside = styled.div`
-  height: 100vh;
-  width: 20vw;
+  height: 17vh;
+  width: 100vw;
+  display: flex;
+  flex-flow: row wrap;
+  padding-top: 3vh;
+  padding-left: 1rem;
   background-color: #b57500;
   box-shadow: 10px 0px 32px -11px rgba(0, 0, 0, 0.75);
 
-  display: flex;
-  flex-flow: column wrap;
+  > a {
+    padding: 0;
+    margin-right: 0.7rem;
 
-  padding-top:20vh;
-  
-  >a{
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-family: Oswald, sans-serif;
+
+    &:hover {
+      background-color: #0e0c08;
+      color: #b59300;
+    }
+  }
+
+  @media (min-width: 426px) {
+    height: 100vh;
+    width: 20vw;
+
+    flex-flow: column wrap;
+
+    padding-top: 20vh;
+    padding-left: 0;
+    > a {
       padding: 1rem;
+      margin-right: 0;
 
       text-align: left;
       text-decoration: none;
       color: black;
       font-family: Oswald, sans-serif;
 
-      &:hover{
-          background-color: #0E0C08;
-          color: #B59300;
+      &:hover {
+        background-color: #0e0c08;
+        color: #b59300;
       }
+    }
   }
-
 `;

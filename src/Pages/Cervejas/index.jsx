@@ -1,47 +1,53 @@
 import { useEffect, useState } from "react";
+
 import AsideMenu from "../../components/Aside";
 import BeerCard from "../../components/BeerCard";
-import { Body, TitleDiv, PreviewListArea, InfosArea, BeerInfo, InfoButton, Ulist, LitresList } from "../../components/globalStylesComponents/styles";
+import { Body, TitleDiv, PreviewListArea, InfosArea, BeerInfo, InfoButton, Ulist } from "../../components/globalStylesComponents/styles";
 
-import { useWedding } from "../../Providers/WeddingList";
+import { useCelebration } from "../../Providers/CelebrationList";
+import { useGraduation } from "../../Providers/GraduationList";
 import { useInfoDetails } from "../../Providers/InfoDetails";
+import { useWedding } from "../../Providers/WeddingList";
+import { useCervejas } from "../../Providers/Cervejas";
 
-import { CardOverflow } from "./styles";
+import {
+  CardOverflow,
+} from "./styles";
 
-export default function WeddingPage() {
-  const { weddingList, removeBeer, changeUnit } = useWedding();
+
+export default function Cervejas() {
+
+  
+  const { cervejas } = useCervejas();
+  const { weddingList } = useWedding();
+  const { graduationList } =useGraduation();
+  const { celebrationList } = useCelebration();
   const { infoDetails, setInfoDetails } = useInfoDetails();
+  const [ previewList, setPreviewList ] = useState([]);
 
-  const [litres, setLitres] = useState([]);
-
-  useEffect(()=>{
-    let reduce = weddingList.reduce((acc,item) => acc + (item.volume.value + item.quantity) ,0);
-setLitres(reduce)
-  }, [weddingList])
+  useEffect(()=> {}, [])
+  
 
 
   return (
+   
     <Body>
-        
-        <TitleDiv backgroundColor={"#b11d1d"} >
-          <h2>BEBIDAS DO CASAMENTO</h2>
-        </TitleDiv>
-
-        <AsideMenu/>
-      
+      <TitleDiv backgroundColor={"#b59300"}>
+        <h2>LISTA DE BEBIDAS</h2>
+      </TitleDiv>
+      <AsideMenu></AsideMenu>
       <section>
         <CardOverflow>
-          {weddingList.map((item, index) => (
+          {cervejas.map((item, index) => (
             <BeerCard
               key={item.id}
               item={item}
-              index={index + 1}
-              removeButton={removeBeer}
-              changeFucntion={changeUnit}
+              // index={index + 1}
+              type={"shoppingList"}
             />
           ))}
         </CardOverflow>
-       
+
         <InfosArea>
           <BeerInfo>
             <InfoButton backgroundColor={"#0E0C08"} onClick={() => setInfoDetails("")}>X</InfoButton>
@@ -83,29 +89,33 @@ setLitres(reduce)
           </BeerInfo>
 
           <PreviewListArea>
-           
+            <div>
+              <InfoButton backgroundColor={"#b11d1d"} onClick={() => setPreviewList(weddingList)}> </InfoButton>
+              <InfoButton backgroundColor={"#443887"} onClick={() => setPreviewList(graduationList)}> </InfoButton>
+              <InfoButton backgroundColor={"#38873a"} onClick={() => setPreviewList(celebrationList)}> </InfoButton>
+              {!previewList ? <h4>Preview da lista</h4> : previewList === weddingList ?  <h4>Lista Casamento</h4> : previewList === graduationList ?  <h4>Lista formatura</h4> :  <h4>Lista confraternização</h4> }
+              <InfoButton backgroundColor={"#0E0C08"} onClick={() => setPreviewList(false)}>X</InfoButton>
+            </div>
 
-            <LitresList>
-              <li> <h2> Total: {litres > 0 ? (litres) : 0} Litres </h2></li>
-              {weddingList.map((item, index) => (
+            <ul>
+              {!!previewList &&
+                previewList.map((item, index) => (
                   <li key={item.id}>
                     {" "}
                     <p>
-                      {index+1}-{item.name}{" "} unit.{item.volume.value}L
+                      {item.id}-{item.name}{" "}
                     </p>
-                    <p>Pedido: {item.quantity * item.volume.value} L</p>
                   </li>
                 ))}
-            </LitresList>
+            </ul>
           </PreviewListArea>
 
 
           
         </InfosArea>
+       
       </section>
-  
-  );
-
     </Body>
-  );
+    
+  )
 }

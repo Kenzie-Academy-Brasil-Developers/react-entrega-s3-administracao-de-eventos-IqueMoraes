@@ -3,35 +3,36 @@ import AsideMenu from "../../components/Aside";
 import BeerCard from "../../components/BeerCard";
 import { Body, TitleDiv, PreviewListArea, InfosArea, BeerInfo, InfoButton, Ulist, LitresList } from "../../components/globalStylesComponents/styles";
 
-import { useWedding } from "../../Providers/WeddingList";
+import { useCelebration } from "../../Providers/CelebrationList";
 import { useInfoDetails } from "../../Providers/InfoDetails";
 
 import { CardOverflow } from "./styles";
 
-export default function WeddingPage() {
-  const { weddingList, removeBeer, changeUnit } = useWedding();
+export default function CelebrationPage() {
+  const { celebrationList, removeBeer, changeUnit } = useCelebration();
   const { infoDetails, setInfoDetails } = useInfoDetails();
 
   const [litres, setLitres] = useState([]);
 
   useEffect(()=>{
-    let reduce = weddingList.reduce((acc,item) => acc + (item.volume.value + item.quantity) ,0);
+    let reduce = celebrationList.reduce((acc,item) => acc + (item.volume.value + item.quantity) ,0);
 setLitres(reduce)
-  }, [weddingList])
+  }, [celebrationList])
 
+  
 
   return (
     <Body>
         
-        <TitleDiv backgroundColor={"#b11d1d"} >
-          <h2>BEBIDAS DO CASAMENTO</h2>
+        <TitleDiv backgroundColor={"#38873a"}>
+          <h2>BEBIDAS DA CONFRATERNIZAÇÃO</h2>
         </TitleDiv>
 
         <AsideMenu/>
       
       <section>
         <CardOverflow>
-          {weddingList.map((item, index) => (
+          {celebrationList.map((item, index) => (
             <BeerCard
               key={item.id}
               item={item}
@@ -41,6 +42,8 @@ setLitres(reduce)
             />
           ))}
         </CardOverflow>
+       
+
        
         <InfosArea>
           <BeerInfo>
@@ -87,7 +90,7 @@ setLitres(reduce)
 
             <LitresList>
               <li> <h2> Total: {litres > 0 ? (litres) : 0} Litres </h2></li>
-              {weddingList.map((item, index) => (
+              {celebrationList.map((item, index) => (
                   <li key={item.id}>
                     {" "}
                     <p>

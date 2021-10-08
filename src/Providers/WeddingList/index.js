@@ -10,6 +10,7 @@ export const WeddingListProvider = ({ children }) => {
       return weddingList 
     }
     else{
+      item.quantity=Number(1);
 
       setWeddingList([...weddingList, item].sort((a,b)=> a.id-b.id));
       localStorage.setItem("@ADM_EVNT:wedding_list", JSON.stringify(weddingList));
@@ -25,10 +26,21 @@ export const WeddingListProvider = ({ children }) => {
     setWeddingList(weddingList.filter((item) => item.id !== beer.id));
   };
 
+
+
+  const changeUnit = (beer, unit) => {
+    beer.quantity = unit;
+    let newList = weddingList.filter(item=> item.id !== beer.id)
+
+    setWeddingList(...newList, beer);
+    setWeddingList(weddingList.sort((a,b)=> a-b))
+    localStorage.setItem("@ADM_EVNT:wedding_list", JSON.stringify(weddingList));
+
+  }
  
 
   return (
-    <WeddingListContext.Provider value={{ weddingList, addWeddingBeer, removeBeer }}>
+    <WeddingListContext.Provider value={{ weddingList, addWeddingBeer, removeBeer, changeUnit }}>
       {children}
     </WeddingListContext.Provider>
   );

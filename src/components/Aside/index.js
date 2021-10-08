@@ -8,7 +8,7 @@ export default function AsideMenu(){
 
 
         <Link to="/">Home</Link>
-        <Link to="/createnewevent">Lista de produtos</Link>
+        <Link to="/cervejas">Lista de cervejas</Link>
         <Link to="/weddingpage">Casamento</Link>
         <Link to="/graduationpage">Formatura</Link>
         <Link to="/celebrationpage">Confraternização</Link>
